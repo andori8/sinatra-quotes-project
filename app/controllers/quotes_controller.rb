@@ -35,10 +35,14 @@ class QuotesController < ApplicationController
   end
 
   patch '/quotes/:id' do
-    @quote = Quote.find(params[:id])
-    @quote.update(content: params[:content], author: params[:author])
-    @quote.save
-    redirect "/quotes/#{@quote.id}"
+    if params[:content].empty? || params[:author].empty?
+      redirect "/quotes"
+    else
+      @quote = Quote.find(params[:id])
+      @quote.update(content: params[:content], author: params[:author])
+      @quote.save
+      redirect "/quotes/#{@quote.id}"
+    end
   end
 
   post '/quotes' do
@@ -47,6 +51,16 @@ class QuotesController < ApplicationController
     else
       quote = Quote.create(content: params[:content], author: params[:author], user_id: session[:user_id])
       redirect "/quotes"
+    end
+  end
+
+  delete '/quotes/:id/delete' do
+    if logged_in?
+      @quote = Quote.find(params[:id])
+      @quote.delete
+      redirect "/quotes"
+    else
+      redirect "/login"
     end
   end
 end
