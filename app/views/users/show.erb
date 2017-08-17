@@ -1,0 +1,7 @@
+<h1><%=@user.username%>'s Submitted Quotes</h1>
+
+<ol>
+<% @user.quotes.each do |quote| %>
+  <li><a href = "/quotes/<%=quote.id%>"><%=quote.content%> - <%=quote.author%></a></li>
+  <% end %>
+</ol>
