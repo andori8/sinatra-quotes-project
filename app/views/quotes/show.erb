@@ -1,0 +1,6 @@
+<h1><%=@quote.content%></h1>
+<h3>- <%=@quote.author%></h3>
+
+<form action = "/quotes/<%=@quote.id%>/edit" method = "GET">
+  <input type = "submit" value = "Edit this quote">
+</form>

@@ -1,0 +1,9 @@
+<h1>Edit Quote</h1>
+
+<form action = "/quotes/<%=@quote.id%>" method = "POST">
+  <input id = "hidden" type = "hidden" name = "_method" value = "PATCH">
+  Content: <textarea name = "content"><%=@quote.content%></textarea><br><br>
+  Author: <input type = "text" name = "author" value = "<%=@quote.author%>"><br><br>
+
+  <input type = "submit" value = "Edit">
+</form>
