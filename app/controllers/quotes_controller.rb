@@ -1,5 +1,7 @@
+require 'rack-flash'
 class QuotesController < ApplicationController
-
+  use Rack::Flash
+  
   get '/quotes' do
     if logged_in?
       erb :"/quotes/index"
