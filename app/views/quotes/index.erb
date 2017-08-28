@@ -1,10 +1,22 @@
-<h1> Main Quotes page</h1>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1> List of All Contributed Quotes</h1>
 
 <ul>
 <% Quote.all.each do |quote| %>
   <li><a href = "/quotes/<%=quote.id%>"><%=quote.content%> - <%=quote.author%></a></li>
   <% end %>
 </ul>
+
+<form action = "/users/<%=current_user.username%>" method = "GET">
+  <input type = "submit" value = "My quotes">
+</form>
+
+<form action = "/quotes/new" method = "GET">
+  <input type = "submit" value = "Create quote">
+</form>
 
 <form action = "/logout" method = "GET">
   <input type = "submit" value = "Log Out">
