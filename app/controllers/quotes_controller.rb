@@ -1,8 +1,9 @@
+require 'rack-flash'
 class QuotesController < ApplicationController
+  use Rack::Flash
 
   get '/quotes' do
     @user = User.find(session[:user_id])
-    flash[:message] = "You have successfully logged in"
     if logged_in?
       erb :"/quotes/index"
     else
